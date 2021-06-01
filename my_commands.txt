@@ -1,0 +1,28 @@
+Форматирование кода
+# на mac option + command + L
+# на windows ctrl + alt + I
+
+Запуск сервера
+python3 manage.py runserver
+
+Создание виртуального окружения
+python3 -m venv venv
+
+Запуск виртуального окружения проекта
+В Windows: .\venv\Scripts\activate
+В macOS или Linux: source venv/bin/activate
+
+Остановка виртуального окружения
+deactivate
+
+Установка Django (LTS)
+pip install Django==3.2.3
+python3 -m pip install --upgrade pip
+
+Создание проекта
+django-admin startproject django_pavlov
+
+pip freeze > requirements.txt
+При клонировании репозитория на другой компьютер или сервер выполните (предварительно создав и активировав нужное виртуальное окружение):
+pip install -r requirements.txt
+Таким образом, разом установятся все необходимые пакеты.
