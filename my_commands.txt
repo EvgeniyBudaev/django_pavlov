@@ -29,3 +29,13 @@ pip install -r requirements.txt
 
 Создание приложения
 python3 manage.py startapp products
+
+Создать миграцию
+python manage.py makemigrations
+python manage.py makemigrations products
+Запустить все миграции
+python manage.py migrate
+python manage.py migrate products
+
+Создать супер пользователя
+python manage.py createsuperuser
