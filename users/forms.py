@@ -1,5 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, \
+    UserChangeForm
 
 from users.models import User
 
@@ -44,9 +45,26 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'username', 'email', 'password1',
+                  'password2')
 
     def __init__(self, *args, **kwargs):
         super(UserRegistrationForm, self).__init__(*args, **kwargs)
         for field_name, filed in self.fields.items():
             filed.widget.attrs['class'] = 'form-control py-4'
+
+
+class UserProfileForm(UserChangeForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'readonly': True}))
+    email = forms.CharField(widget=forms.EmailInput(attrs={'readonly': True}))
+    image = forms.ImageField(widget=forms.FileInput(), required=False)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'image')
+
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        for field_name, filed in self.fields.items():
+            filed.widget.attrs['class'] = 'form-control py-4'
+        self.fields['image'].widget.attrs['class'] = 'custom-file-input'
