@@ -39,3 +39,10 @@ python manage.py migrate products
 
 Создать супер пользователя
 python manage.py createsuperuser
+
+Fixture - выгрузка данных из БД (dump данных)
+python manage.py dumpdata products.ProductCategory > categories.json
+python manage.py dumpdata products.Product > goods.json
+Загрузка данных в БД
+python manage.py loaddata products/fixtures/categories.json
+python manage.py loaddata products/fixtures/goods.json
